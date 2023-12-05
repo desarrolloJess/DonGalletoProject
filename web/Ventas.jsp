@@ -121,8 +121,9 @@
                     
                     <!-- INICIA ESPECIFICACIÓN COMPRA -->
                     <div class="row">
-                        <p id="msjVenta">SELECCIONA EL TIPO DE VENTA</p>
+                        
                         <div class="col" id="formularioTipoVenta" >                            
+                        <p id="msjVenta">SELECCIONA EL TIPO DE VENTA</p>
                             <button class="btn btn-light btnTipoVenta" id="btnTipoVenta1" onclick="desactivarTipoVenta('#btnTipoVenta1','#formulariosVentaPieza')">
                                 <img src="resources/img/iconoPieza.png" >PIEZA
                             </button>
@@ -145,12 +146,12 @@
                         
                         <div class="input-group mb-3"">
                             <span class="input-group-text" >Cantidad: </span>
-                            <input type="number" class="form-control" placeholder="0" id="formPieza" name="formPieza">
+                            <input type="number" class="form-control" placeholder="0" id="formPieza" name="formPieza" min="1">
                             <span class="input-group-text" >PIEZA</span>
                         </div>
                         
                         <button class="btn btn-light" id="btnAgregar" onclick="agregar('formulariosVentaPieza')">AGREGAR</button>
-                        <button class="btn btn-light" id="btnCancel">CANCELAR</button>
+                        <button class="btn btn-light" id="btnCancel" onclick="reiniciarTodo()">CANCELAR</button>
                     </div>
                     
                     <!-- FORMULARIO POR CAJA-->
@@ -162,7 +163,7 @@
                         </div>
                                                 
                         <button class="btn btn-light" id="btnAgregar" onclick="agregar('formulariosVentaCaja')">AGREGAR</button>
-                        <button class="btn btn-light" id="btnCancel">CANCELAR</button>
+                        <button class="btn btn-light" id="btnCancel" onclick="reiniciarTodo()">CANCELAR</button>
                     </div>
                     
                     <!-- FORMULARIO POR CANTIDAD-->
@@ -187,29 +188,21 @@
                         </div>                        
                         
                         <button class="btn btn-light" id="btnAgregar" onclick="agregar('formulariosVentaGramaje')">AGREGAR</button>
-                        <button class="btn btn-light" id="btnCancel">CANCELAR</button>
+                        <button class="btn btn-light" id="btnCancel" onclick="reiniciarTodo()">CANCELAR</button>
                     </div>
                 </div>
                 <div class="col">
-                    <table id="tablaProductos" class="table table-bordered" >
+                    <table id="tablaProductos" class="table table-bordered table-hover" >
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Cantidad</th> 
+                                <th>No.</th>
+                                <th>Unidad</th>
                                 <th>Total</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Chips</td>
-                                <td>2</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>Fresa</td>
-                                <td>1</td>
-                                <td>20</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -220,17 +213,117 @@
    
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", datosGalletas());
+        document.addEventListener("DOMContentLoaded", datosGalletas);
         $(document).ready(function () {
-            
-            $('#tablaProductos').DataTable({
+            obtenerPrecioCaja();
+            obtenerPrecioGramaje();
+
+            // Inicializar la tabla
+            var table = $('#tablaProductos').DataTable({
                 info: false,
                 ordering: true,
                 scrollY: true,
                 paging: false,
-                searching: false 
+                searching: false,
+                select: true,
+                dom: 'Bfrtip',
+                language: {
+                    emptyTable: "No hay galletas agregadas.",
+                    infoEmpty: "Mostrando 0 a 0 de 0 entradas"
+                },
+                buttons: [
+                    {
+                        extend: 'print',
+                        text: 'Finalizar Venta',
+                        title: '<h2><img src="resources/img/logoPequeñoDonGalleto.png" style="width: 20%;" /> ¡Gracias por su compra!</h2>',
+                        messageTop: '¡Provechito!',
+                        className: 'btn-imprimir',
+                        action: function (e, dt, button, config) {
+                            console.log("entro aquí finalizar Compra");
+                            var data = table.rows().data().toArray(); // Obtener los datos de las filas
+                            
+                            
+                            //return;
+                            var counter = 0;
+                            var totalAjaxCalls = data.length;
+                            data.forEach(function(rowData) {
+                                var datos = {
+                                    nombreGalleta: rowData[0], //nombre
+                                    cantidad: rowData[1], //cantidad
+                                    tipoVenta: rowData[2], //tipoVenta
+                                    totalHistoricoVenta: rowData[3] //total
+                                };                               
+                                
+                                $.ajax({
+                                    type: "POST",
+                                    url: "ServletVentas?accion=insertarVenta", // URL para la inserción
+                                    contentType: "application/json",
+                                    data: JSON.stringify(datos),
+                                    success: function(response) {
+                                        console.log("Mensaje del servlet:", response);
+                                        counter++;
+                                        // Si todas las llamadas AJAX han finalizado
+                                        if (counter === totalAjaxCalls) {
+                                            var sumaTotal = 0;
+                                            table.rows().every(function () {
+                                                var rowData = this.data();
+                                                sumaTotal += parseInt(rowData[3]);
+                                            });
+                                            console.log("Total Venta: " + sumaTotal);
+                                            insertarVentasTotales(sumaTotal);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error("Error:", error);
+                                    }
+                                });
+                            });                            
+                            
+                            Swal.fire({
+                                title: '¿Desea imprimir el ticket?',
+                                text: 'Por favor, confirme para continuar',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Sí, imprimir'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.fn.dataTable.ext.buttons.print.action(e, dt, button, config);
+                                    table.clear().draw();
+                                }else{
+                                    table.clear().draw();
+                                }
+                            });
+                            
+                        }
+                    }
+                ]
+            });
+
+            // Evento de doble clic para eliminar una fila
+            $('#tablaProductos tbody').on('dblclick', 'tr', function () {
+                var data = table.row(this).data(); // Obtener datos de la fila
+
+                // Mostrar el diálogo de SweetAlert2 para confirmar la eliminación
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: '¿Quieres eliminar esta fila?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        table.row(this).remove().draw(); // Eliminar la fila si se confirma
+                        Swal.fire('¡Eliminado!', 'La fila ha sido eliminada.', 'success');
+                    }
+                });
             });
         });
     </script>

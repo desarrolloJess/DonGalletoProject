@@ -119,3 +119,24 @@ body{
     font-family: 'Open Sans';
     text-align: left;
 }
+table.dataTable td {
+  font-size: 12px;
+}
+table.dataTable th {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  
+}
+.btn-imprimir {
+    background-color: #4072A7;
+    color: white;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    letter-spacing: 2px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;    
+}
+.btn-imprimir:hover{
+    background-color: #213A55;  
+}

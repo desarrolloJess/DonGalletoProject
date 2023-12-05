@@ -94,7 +94,7 @@ public class ServiceVentas {
             
             int filasAfectadas = ps.executeUpdate();
             if(filasAfectadas>0){
-                lstMap.put("resultado",insertarVentaTotales(historico) );
+                lstMap.put("resultado","Exito Insert Total Historico" );
             }else{
                 lstMap.put("resultado","Error Insertar Hisorico Venta" );
             }
@@ -113,7 +113,7 @@ public class ServiceVentas {
             Connection cn = conexionBD.ConexionBD();
             PreparedStatement ps = cn.prepareStatement("INSERT INTO ventasGalletas(total) VALUES(?);");
             
-            ps.setString(1, historico.getNombreGalleta());
+            ps.setString(1, historico.getTotalHistoricoVenta());
             int filasAfectadas = ps.executeUpdate();
             if(filasAfectadas>0){
                 
