@@ -42,7 +42,7 @@
                     <button class="btn btn-light" id="btnIndex" onclick="window.location.href='Ventas.jsp';">VENDER</button>
                     <button class="btn btn-light" id="btnIndex" >INVENTARIO</button>
                     <button class="btn btn-light" id="btnIndex" >GANANCIAS</button>
-                    <button class="btn btn-light" id="btnIndex" >PRODUCCIÓN</button>
+                    <button class="btn btn-light" id="btnIndex" onclick="window.location.href='Produccion.jsp';">PRODUCCIÓN</button>
                 </div>
                 <div class="col">
 
