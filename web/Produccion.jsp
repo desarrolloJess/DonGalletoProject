@@ -9,10 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="resources/js/index.js"></script>
         <link rel="stylesheet" type="text/css" href="resources/css/estilosIndex.css">
         <script src="resources/js/Produccion.js"></script>
-        <title>Ventas</title>
+        <title>Produccion</title>
         <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>    
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -30,98 +29,108 @@
         <div class="container">
             <div class="row">
                 <p id="msjVenta">TIPO DE GALLETA</p>
-                <div class="col-7"> 
+                <div class="col-8"> 
                     <!-- INICIA ÁREA DE GALLETAS --> 
                     <div class="row">
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas1" onclick="desactivarGalletas('#btnGalletas1')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas1" onclick="desactivarGalletas('#btnGalletas1')" >
                                 <img src="resources/img/galletas/galleta1.png" >
                                 <div id="datosGalletas1">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas2" onclick="desactivarGalletas('#btnGalletas2')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas2" onclick="desactivarGalletas('#btnGalletas2')" >
                                 <img src="resources/img/galletas/galleta2.png" >
                                 <div id="datosGalletas2">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas3" onclick="desactivarGalletas('#btnGalletas3')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas3" onclick="desactivarGalletas('#btnGalletas3')" >
                                 <img src="resources/img/galletas/galleta3.png" >
                                 <div id="datosGalletas3">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas4" onclick="desactivarGalletas('#btnGalletas4')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas4" onclick="desactivarGalletas('#btnGalletas4')" >
                                 <img src="resources/img/galletas/galleta4.png" >
                                 <div id="datosGalletas4">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas5" onclick="desactivarGalletas('#btnGalletas5')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas5" onclick="desactivarGalletas('#btnGalletas5')" >
                                 <img src="resources/img/galletas/galleta5.png" >
                                 <div id="datosGalletas5">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 1%">
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas6" onclick="desactivarGalletas('#btnGalletas6')" >
+                            <button style="height: 115px;width: 110px;margin-left: -2%;" class="btn btn-light btnGalletas" id="btnGalletas6" onclick="desactivarGalletas('#btnGalletas6')" >
                                 <img src="resources/img/galletas/galleta6.png" >
                                 <div id="datosGalletas6">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas7" onclick="desactivarGalletas('#btnGalletas7')" >
+                            <button style="height: 115px;width: 110px;margin-left: -2%;" class="btn btn-light btnGalletas" id="btnGalletas7" onclick="desactivarGalletas('#btnGalletas7')" >
                                 <img src="resources/img/galletas/galleta7.png" >
                                 <div id="datosGalletas7">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>                                
                             </button>
                         </div>
                         <div class="col">
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas8" onclick="desactivarGalletas('#btnGalletas8')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas8" onclick="desactivarGalletas('#btnGalletas8')" >
                                 <img src="resources/img/galletas/galleta8.png" >
                                 <div id="datosGalletas8">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">    
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas9" onclick="desactivarGalletas('#btnGalletas9')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas9" onclick="desactivarGalletas('#btnGalletas9')" >
                                 <img src="resources/img/galletas/galleta9.png" >
                                 <div id="datosGalletas9">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
                         <div class="col">    
-                            <button style="height: 115px;" class="btn btn-light btnGalletas" id="btnGalletas10"  onclick="desactivarGalletas('#btnGalletas10')" >
+                            <button style="height: 115px;width: 110px;" class="btn btn-light btnGalletas" id="btnGalletas10"  onclick="desactivarGalletas('#btnGalletas10')" >
                                 <img src="resources/img/galletas/galleta10.png" >
                                 <div id="datosGalletas10">
+                                    <p id="idGalleta" hidden></p>
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta"></p>
                                 </div>
                             </button>
                         </div>
@@ -131,14 +140,14 @@
                     <!-- INICIA ESPECIFICACIÓN COMPRA -->
                     <div class="row" style="margin-top: 1%">
                         <div class="col divBtnProduccion">
-                            <button class="btn btn-dark btnProduccion" id="btnTipoVenta1" onclick="agregarProduccion()">
+                            <button class="btn btn-light btnProduccion" id="btnAgregar" onclick="agregarTandaGalletas()" disabled>
                                 <p>AGREGAR TANDA (120 galletas c/u)</p>
                             </button>                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col divBtnProduccion">                            
-                            <button class="btn btn-dark btnProduccion" id="btnTipoVenta1" onclick="desactivarTipoVenta('#btnTipoVenta1','#formulariosVentaPieza')">
+                            <button class="btn btn-light btnProduccion" id="btnCancel" id="btnTipoVenta1" onclick="desactivarTipoVenta('#btnTipoVenta1','#formulariosVentaPieza')" disabled>
                                 <p>ELIMINAR GALLETAS (pieza)</p>
                             </button>                            
                         </div>
@@ -167,7 +176,7 @@
                     <!-- TERMINA ESPECIFICACIÓN COMPRA -->
                 </div>
                 
-                <div class="col-5">
+                <div class="col-4">
                     <div class="card oculta" id="miTarjeta" style="margin-bottom: 1%;">
                         <div class="card-body">
                             <div class="input-group input-group-sm mb-3" style="width: 50%; margin: auto;">
@@ -259,5 +268,14 @@
                 </div>
             </div>
         </div>
+        
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>    
+    <script>
+        document.addEventListener("DOMContentLoaded", datosGalletas);
+    </script>
     </body>
 </html>

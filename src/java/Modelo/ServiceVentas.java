@@ -75,7 +75,67 @@ public class ServiceVentas {
         return null;
     }
     
+    public String existenciaxID( int idBusqueda) {
+        
+        try {
+            Conexion conexionBD = new Conexion();
+            Connection cn = conexionBD.ConexionBD();
+            PreparedStatement ps = cn.prepareStatement("SELECT existencia FROM listadoGalletas WHERE idGalleta=?;");
+            ps.setInt(1, idBusqueda);
+            String existenciaGalleta;
+            try ( ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    existenciaGalleta = rs.getString("existencia");
+                    return existenciaGalleta;
+                }
+            }
+        } catch (SQLException e) {
+            return "Error Precio Caja";
+        }
+        return null;
+    }
     
+    public String actualizarExistenciaPorID(int idBusqueda, String nuevaExistencia) {
+        try {
+            Conexion conexionBD = new Conexion();
+            Connection cn = conexionBD.ConexionBD();
+            PreparedStatement ps = cn.prepareStatement("UPDATE listadoGalletas SET existencia = ? WHERE idGalleta = ?");
+            ps.setString(1, nuevaExistencia);
+            ps.setInt(2, idBusqueda);
+
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                return "Existencia actualizada correctamente";
+            } else {
+                return "No se pudo actualizar la existencia";
+            }
+        } catch (SQLException e) {
+            return "Error al actualizar la existencia";
+        }
+    }
+    public String insertarGalletasEliminadas(HistoricoEliminacionGalletasModelo historico,int idBusqueda, String nuevaExistencia) {
+    try {
+        actualizarExistenciaPorID(idBusqueda,nuevaExistencia);
+        
+        Conexion conexionBD = new Conexion();
+        Connection cn = conexionBD.ConexionBD();
+        PreparedStatement ps = cn.prepareStatement("INSERT INTO historicoEliminacionGalletas (nombre, cantidad, motivo) VALUES (?, ?, ?)");
+
+        ps.setString(1, historico.getNombre());
+        ps.setString(2, historico.getCantidad());
+        ps.setString(3, historico.getMotivo());
+
+        int filasAfectadas = ps.executeUpdate();
+
+        return (filasAfectadas > 0) ? "Éxito al insertar registros" : "Error al insertar registros";
+
+    } catch (SQLException e) {
+        return "Error al insertar registros: " + e.getMessage();
+    }
+}
+
+
+
     
     public Object insertarHisoricoVenta(HistoricoVentasGalletasModelo historico) {
         

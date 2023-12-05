@@ -45,35 +45,35 @@
                                 <img src="resources/img/galletas/galleta1.png" >
                                 <div id="datosGalletas1">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas2" onclick="desactivarGalletas('#btnGalletas2')" >
                                 <img src="resources/img/galletas/galleta2.png" >
                                 <div id="datosGalletas2">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas3" onclick="desactivarGalletas('#btnGalletas3')" >
                                 <img src="resources/img/galletas/galleta3.png" >
                                 <div id="datosGalletas3">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas4" onclick="desactivarGalletas('#btnGalletas4')" >
                                 <img src="resources/img/galletas/galleta4.png" >
                                 <div id="datosGalletas4">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas5" onclick="desactivarGalletas('#btnGalletas5')" >
                                 <img src="resources/img/galletas/galleta5.png" >
                                 <div id="datosGalletas5">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                         </div>
@@ -84,35 +84,35 @@
                                 <img src="resources/img/galletas/galleta6.png" >
                                 <div id="datosGalletas6">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas7" onclick="desactivarGalletas('#btnGalletas7')" >
                                 <img src="resources/img/galletas/galleta7.png" >
                                 <div id="datosGalletas7">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>                                
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas8" onclick="desactivarGalletas('#btnGalletas8')" >
                                 <img src="resources/img/galletas/galleta8.png" >
                                 <div id="datosGalletas8">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas9" onclick="desactivarGalletas('#btnGalletas9')" >
                                 <img src="resources/img/galletas/galleta9.png" >
                                 <div id="datosGalletas9">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                             <button class="btn btn-light btnGalletas" id="btnGalletas10"  onclick="desactivarGalletas('#btnGalletas10')" >
                                 <img src="resources/img/galletas/galleta10.png" >
                                 <div id="datosGalletas10">
                                     <p id="nombreGalleta">galletita</p>
-                                    <p id="costoGalleta">$10.00</p>
+                                    <p id="existenciaGalleta">$10.00</p>
                                 </div>
                             </button>
                         </div>

@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.DatosGalletasModelo;
 import Modelo.HistoricoVentasGalletasModelo;
 import Modelo.ServiceVentas;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse; 
 import java.io.BufferedReader;
 import java.util.List;
+import java.util.Map;
 
 @MultipartConfig
 public class ServletVentas extends HttpServlet {
@@ -33,6 +35,7 @@ public class ServletVentas extends HttpServlet {
             sb.append(line);
         }
         ObjectMapper mapper = new ObjectMapper();
+                    
         
         String accion = request.getParameter("accion");
                 
@@ -61,6 +64,20 @@ public class ServletVentas extends HttpServlet {
                     HistoricoVentasGalletasModelo historico2 = mapper.readValue(sb.toString(), HistoricoVentasGalletasModelo.class);
                     String resultadoInsercionTotal = serviceVentas.insertarVentaTotales(historico2);
                     response.getWriter().write(objectMapper.writeValueAsString(resultadoInsercionTotal));
+                    break;
+                case "consultarExistenciaGalletas":
+                    
+                    Map<String, Object> data = mapper.readValue(sb.toString(), new TypeReference<Map<String, Object>>() { });
+                    int idBusqueda = Integer.parseInt(data.get("idGalletaG").toString());
+                    String totalExistencia = serviceVentas.existenciaxID(idBusqueda);
+                    response.getWriter().write(objectMapper.writeValueAsString(totalExistencia));
+                    break;
+                case "actualizarExistenciaGalletas":
+                    Map<String, Object> data1 = mapper.readValue(sb.toString(), new TypeReference<Map<String, Object>>() { });
+                    int idBusqueda1 = Integer.parseInt(data1.get("idGalletaG").toString());
+                    String existenciaNueva = data1.get("existenciaNueva").toString();
+                    String msjActualizacion = serviceVentas.actualizarExistenciaPorID(idBusqueda1, existenciaNueva);
+                    response.getWriter().write(objectMapper.writeValueAsString(msjActualizacion));
                     break;
             }
         } else {
