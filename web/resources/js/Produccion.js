@@ -98,32 +98,67 @@ function agregarTandaGalletas(){
     }, 2000);
 }
 
-function eliminarGalletas(){
-    consultarExistenciaGalletas();    
+function activarFormulariosCantidadEliminar(){
+    console.log("entro a activar formulario");
+    $("#formulariosCantidadEliminar").show(); 
+}
+function desactivarFormulariosCantidadEliminar(){
+    $("#formulariosCantidadEliminar").hide();
+    location.reload();
+}
+
+
+function eliminarGalletas() {
+    consultarExistenciaGalletas();
+    var cantidadEliminar = 0;
+    var existenciaNueva = 0;
     setTimeout(function() {
-        console.log(existenciaGalletaG);
-        var existenciaNueva = existenciaGalletaG + 120;
-        
-        var accion = "actualizarExistenciaGalletas";
-        var urlBusqueda = "ServletVentas?accion="+accion;   
-        var datos = {
-            idGalletaG: idGalletaG,
-            existenciaNueva: existenciaNueva
-        };
-        $.ajax({
-            type: "POST",
-            url: urlBusqueda,
-            contentType: "application/json",
-            data: JSON.stringify(datos),
-            success: function(response) {
-                console.log("Respuesta Totales Servlet:", response);
-                // Haz lo que necesites con la respuesta del servlet
-            },
-            error: function(xhr, status, error) {
-              console.error("Error:", error);
-            }
-        });
-        
+        cantidadEliminar = parseInt($("#cantidadEliminar").val());
+        var motivoEliminar = $("#motivoEliminar").val();        
+        existenciaNueva = existenciaGalletaG - cantidadEliminar;
+
+        if (cantidadEliminar > existenciaGalletaG) {
+            // Mostrar mensaje de error si la cantidad a eliminar es mayor que la existencia
+            Swal.fire({
+                title: 'Error',
+                text: 'No puedes eliminar más de la cantidad existente',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        } else {
+            var accion = "insertarGalletasEliminadas";
+            var urlBusqueda = "ServletVentas?accion="+accion;
+            var datos = {
+                nombre: nombreGalletaG,
+                cantidad: cantidadEliminar,
+                motivo: motivoEliminar,
+                idGalletaG: idGalletaG,
+                existenciaNueva: existenciaNueva
+            };
+
+            $.ajax({
+                type: "POST",
+                url: urlBusqueda,
+                contentType: "application/json",
+                data: JSON.stringify(datos),
+                success: function(response) {
+                    console.log("Respuesta Totales Servlet:", response);
+                    Swal.fire({
+                        title: 'Eliminación Correcta',
+                        text: response, // Mostrar la respuesta del servlet
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
     }, 2000);
 }
 

@@ -149,3 +149,14 @@ table.dataTable th {
 .btn-imprimir:hover{
     background-color: #213A55;  
 }
+
+/*****************************************ESTILOS PARA PRODUCCIÓN*****************************************/
+#formulariosCantidadEliminar{
+    display: none;
+    background-color: #E2DFDC;
+    width: 100%;
+    height: auto;
+    padding: 5%;
+    border-radius: 10px;
+    margin-bottom: 2%;    
+}

@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.DatosGalletasModelo;
+import Modelo.HistoricoEliminacionGalletasModelo;
 import Modelo.HistoricoVentasGalletasModelo;
 import Modelo.ServiceVentas;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -78,6 +79,11 @@ public class ServletVentas extends HttpServlet {
                     String existenciaNueva = data1.get("existenciaNueva").toString();
                     String msjActualizacion = serviceVentas.actualizarExistenciaPorID(idBusqueda1, existenciaNueva);
                     response.getWriter().write(objectMapper.writeValueAsString(msjActualizacion));
+                    break;
+                case "insertarGalletasEliminadas":
+                    HistoricoEliminacionGalletasModelo historicoEliminacion = mapper.readValue(sb.toString(), HistoricoEliminacionGalletasModelo.class);
+                    Object resultadoEliminacion = serviceVentas.insertarGalletasEliminadas(historicoEliminacion);
+                    response.getWriter().write(objectMapper.writeValueAsString(resultadoEliminacion));
                     break;
             }
         } else {

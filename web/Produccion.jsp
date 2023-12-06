@@ -147,7 +147,7 @@
                     </div>
                     <div class="row">
                         <div class="col divBtnProduccion">                            
-                            <button class="btn btn-light btnProduccion" id="btnCancel" id="btnTipoVenta1" onclick="desactivarTipoVenta('#btnTipoVenta1','#formulariosVentaPieza')" disabled>
+                            <button class="btn btn-light btnProduccion" id="btnCancel" id="btnTipoVenta1" onclick="activarFormulariosCantidadEliminar()" disabled>
                                 <p>ELIMINAR GALLETAS (pieza)</p>
                             </button>                            
                         </div>
@@ -176,26 +176,28 @@
                     <!-- TERMINA ESPECIFICACIÓN COMPRA -->
                 </div>
                 
+                
+                
                 <div class="col-4">
-                    <div class="card oculta" id="miTarjeta" style="margin-bottom: 1%;">
-                        <div class="card-body">
-                            <div class="input-group input-group-sm mb-3" style="width: 50%; margin: auto;">
-                                <span class="input-group-text" id="inputGroup-sizing-default" style="width: 75px;">Cantidad</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                            </div>
-                            <div class="input-group input-group-sm mb-3" style="width: 50%; margin: auto;">
-                              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 75px;">Motivo</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                            </div>
-                            <div class="row">
-                                <div class="col" style="text-align: center;">
-                                    <button style="width: 100px;" type="button" class="btn btn-dark">Actualizar</button>
-                                    <button style="width: 100px;" type="button" class="btn btn-dark">Cancelar</button>
-                                </div>
-                            </div>
+                    
+                    <!-- ESTE FORMULARIO PERMITE ELIMINAR GALLETAS -->
+                    <div id="formulariosCantidadEliminar" >
+                        <p id="msjVenta">Ingresa las cantidades a eliminar.</p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" >Cantidad: </span>
+                            <input type="number" class="form-control" placeholder="0" id="cantidadEliminar" name="cantidadEliminar">
+                            <span class="input-group-text">PIEZA(S)</span>
                         </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" >Cantidad: </span>
+                            <input type="text" class="form-control" placeholder="Ingresa Motivo" id="motivoEliminar" name="motivoEliminar">
+                        </div>
+
+                        <button class="btn btn-light" id="btnAgregar" onclick="eliminarGalletas()">ACEPTAR</button>
+                        <button class="btn btn-light" id="btnCancel" onclick="desactivarFormulariosCantidadEliminar()">CANCELAR</button>
                     </div>
                     
+                    <!--
                     <div class="card" style="margin-bottom: 1%;">
                         <div class="card-body">
                             <div class="row">
@@ -265,6 +267,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>

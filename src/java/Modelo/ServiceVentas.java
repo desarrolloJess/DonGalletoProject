@@ -113,24 +113,25 @@ public class ServiceVentas {
             return "Error al actualizar la existencia";
         }
     }
-    public String insertarGalletasEliminadas(HistoricoEliminacionGalletasModelo historico,int idBusqueda, String nuevaExistencia) {
+    
+    public String insertarGalletasEliminadas(HistoricoEliminacionGalletasModelo historicoEliminacion) {
     try {
-        actualizarExistenciaPorID(idBusqueda,nuevaExistencia);
+        actualizarExistenciaPorID(Integer.parseInt(historicoEliminacion.idGalletaG),historicoEliminacion.getExistenciaNueva());
         
         Conexion conexionBD = new Conexion();
         Connection cn = conexionBD.ConexionBD();
         PreparedStatement ps = cn.prepareStatement("INSERT INTO historicoEliminacionGalletas (nombre, cantidad, motivo) VALUES (?, ?, ?)");
 
-        ps.setString(1, historico.getNombre());
-        ps.setString(2, historico.getCantidad());
-        ps.setString(3, historico.getMotivo());
+        ps.setString(1, historicoEliminacion.getNombre());
+        ps.setString(2, historicoEliminacion.getCantidad());
+        ps.setString(3, historicoEliminacion.getMotivo());
 
         int filasAfectadas = ps.executeUpdate();
 
-        return (filasAfectadas > 0) ? "Éxito al insertar registros" : "Error al insertar registros";
+        return (filasAfectadas > 0) ? "Se eliminaron correctamente" : "Error al eliminar galleta(s)";
 
     } catch (SQLException e) {
-        return "Error al insertar registros: " + e.getMessage();
+        return "Error al eliminar galleta(s): " + e.getMessage();
     }
 }
 
